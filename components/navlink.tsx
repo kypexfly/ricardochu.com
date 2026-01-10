@@ -1,7 +1,7 @@
-import { cn, isCurrentPathOrChild } from "@/lib/utils";
-import { Url } from "next/dist/shared/lib/router/router";
+import type { Url } from "next/dist/shared/lib/router/router";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { cn, isCurrentPathOrChild } from "@/lib/utils";
 
 interface NavLinkProps {
   children?: React.ReactNode;
@@ -14,7 +14,7 @@ export function NavLink({ children, href }: NavLinkProps) {
   return (
     <Link
       className={cn(
-        "text-muted-foreground hover:text-foreground  px-2 py-2 transition-colors",
+        "px-2 py-2 text-muted-foreground transition-colors hover:text-foreground",
         isCurrentPathOrChild(currentPath, href.toString()) && "text-bg"
       )}
       href={href}

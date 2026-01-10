@@ -1,7 +1,6 @@
 "use client";
 
-import { HTMLMotionProps, motion } from "framer-motion";
-import React from "react";
+import { type HTMLMotionProps, motion } from "framer-motion";
 
 export const fadeInLeft = {
   offscreen: {
@@ -60,9 +59,9 @@ export const StaggerAnimateInView = ({
     <motion.div
       className={className}
       initial={initial || "offscreen"}
-      whileInView={whileInView || "onscreen"}
-      viewport={viewport || { once: true, amount: 0.3 }}
       transition={transition || { staggerChildren: 0.15, type: "just" }}
+      viewport={viewport || { once: true, amount: 0.3 }}
+      whileInView={whileInView || "onscreen"}
       {...props}
     >
       {children}

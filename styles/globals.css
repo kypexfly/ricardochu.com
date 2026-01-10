@@ -2,7 +2,7 @@
 
 @import "fumadocs-ui/css/neutral.css";
 @import "fumadocs-ui/css/preset.css";
-@source '../../node_modules/fumadocs-ui/dist/**/*.js';
+@source "../../node_modules/fumadocs-ui/dist/**/*.js";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -115,7 +115,9 @@
 
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
   }
 
   ::selection {
@@ -137,5 +139,6 @@
 .light .rfm-overlay,
 .dark .rfm-overlay {
   @apply pointer-events-none;
-  --gradient-color: hsl(var(--background) / 1), hsl(var(--background) / 0) !important;
+  --gradient-color:
+    hsl(var(--background) / 1), hsl(var(--background) / 0) !important;
 }

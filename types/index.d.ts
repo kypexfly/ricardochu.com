@@ -1,24 +1,24 @@
 import { Icon } from "tabler-icons-react";
 
-export type Social = {
+export interface Social {
   label: string;
   url: string;
   icon: Icon;
-};
+}
 
-export type Route = {
+export interface Route {
   path: string;
   name: string;
-};
+}
 
-export type SiteConfig = {
+export interface SiteConfig {
   title: string;
   description: string;
   url: string;
   logo: string;
-};
+}
 
-export type Project = {
+export interface Project {
   title: string;
   description: string;
   date: string;
@@ -28,7 +28,7 @@ export type Project = {
   article?: string;
   tech?: string[];
   highlight?: boolean;
-};
+}
 
 // export type Post = {
 //   title: string;

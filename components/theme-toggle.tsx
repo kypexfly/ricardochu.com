@@ -8,10 +8,16 @@ export function ThemeToggler() {
 
   const currentTheme = theme === "system" ? systemTheme : theme;
 
-  const toggleTheme = () => (currentTheme === "dark" ? setTheme("light") : setTheme("dark"));
+  const toggleTheme = () =>
+    currentTheme === "dark" ? setTheme("light") : setTheme("dark");
 
   return (
-    <button aria-label="Toggle theme" onClick={toggleTheme} className="flex justify-center px-2 text-muted-foreground">
+    <button
+      aria-label="Toggle theme"
+      className="flex justify-center px-2 text-muted-foreground"
+      onClick={toggleTheme}
+      type="button"
+    >
       <Icons.sun
         className="rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
         size={22}

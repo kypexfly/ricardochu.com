@@ -1,4 +1,5 @@
-import React, { useRef, useState } from "react";
+import type React from "react";
+import { useRef, useState } from "react";
 
 function useCardSpotlight() {
   const divRef = useRef<HTMLDivElement>(null);
@@ -7,7 +8,9 @@ function useCardSpotlight() {
   const [opacity, setOpacity] = useState(0);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!divRef.current || isFocused) return;
+    if (!divRef.current || isFocused) {
+      return;
+    }
 
     const div = divRef.current;
     const rect = div.getBoundingClientRect();
