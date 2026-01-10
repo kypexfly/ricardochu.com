@@ -1,35 +1,41 @@
 import { format, parseISO } from "date-fns";
 import { notFound } from "next/navigation";
 
-import { allPosts } from "contentlayer/generated";
-import { Mdx } from "@/components/mdx-components";
-import "@/styles/mdx.css";
-import { Metadata } from "next";
-import { Balancer } from "react-wrap-balancer";
-import Image from "next/image";
-import ButtonBack from "./button-back";
+import { getMDXComponents } from "@/components/mdx-components";
 import { siteConfig } from "@/config/site";
+import { source } from "@/lib/source";
+import { Metadata } from "next";
+import Image from "next/image";
+import { Balancer } from "react-wrap-balancer";
+import ButtonBack from "./button-back";
+import "@/styles/mdx.css";
 
 export const generateStaticParams = async () =>
-  allPosts.map((post) => ({ slug: post._raw.flattenedPath }));
+  source.getPages().map((post) => ({ slug: post.url }));
 
-export const generateMetadata = ({ params }: { params: { slug: string } }): Metadata => {
-  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
+export const generateMetadata = async (props: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> => {
+  const params = await props.params;
+  const post = source.getPage([params.slug]);
 
   if (!post) return notFound();
 
-  return { title: post.title };
+  return { title: post.data.title };
 };
 
-const PostLayout = ({ params }: { params: { slug: string } }) => {
-  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
+const PostLayout = async (props: { params: Promise<{ slug: string }> }) => {
+  const params = await props.params;
+  const post = source.getPage([params.slug])?.data;
 
   if (!post) return notFound();
+
+  const Mdx = post.body;
 
   return (
     <>
-      <div className="container sm:px-8 my-3">
-        <ButtonBack  />
+      <div className="container mx-auto sm:px-8 my-3">
+        <ButtonBack />
       </div>
 
       <article className="px-4 pb-6 sm:py-6 w-full mx-auto max-w-2xl">
@@ -39,8 +45,10 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
           </h1>
 
           <p className="my-2 text-sm text-muted-foreground">
-            <time dateTime={post.date}>{format(parseISO(post.date), "LLLL d, yyyy")}</time> •{" "}
-            {siteConfig.title}
+            <time dateTime={post.date.toISOString()}>
+              {format(parseISO(post.date.toISOString()), "LLLL d, yyyy")}
+            </time>{" "}
+            • {siteConfig.title}
           </p>
 
           <div className="h-72 overflow-hidden my-3 bg-zinc-950">
@@ -53,7 +61,10 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
             />
           </div>
         </header>
-        <Mdx code={post.body.code} />
+
+        <div className="mdx">
+          <Mdx components={getMDXComponents()} />
+        </div>
       </article>
     </>
   );

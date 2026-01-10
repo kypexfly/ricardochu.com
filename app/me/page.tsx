@@ -1,6 +1,12 @@
 import { Icons } from "@/components/icons";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { siteConfig } from "@/config/site";
 import { socialList } from "@/data";
 import { cn } from "@/lib/utils";
@@ -13,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <div className="container sm:py-6 sm:px-8">
+    <div className="container mx-auto sm:py-6 sm:px-8">
       <Description />
       <Skills />
       <Education />
@@ -25,30 +31,35 @@ export default function About() {
 function Description() {
   return (
     <section className="my-16">
-      <h1 className="text-center sm:text-left mb-6 text-gray-800 dark:text-white text-5xl font-bold tracking-tight">
+      <h1 className="flex items-center gap-2 text-center sm:text-left mb-6 text-gray-800 dark:text-white text-5xl font-bold tracking-tight">
         <Image
           src="/me.png"
           alt="Ricardo Chu photo"
-          className="rounded-full block mx-auto mb-3 xs:inline xs:mr-3"
+          className="rounded-full xs:inline-flex xs:mr-3"
           width="96"
           height="96"
         />
-        <span className="text-gradient-flame">About</span> Me
+        <span>
+          <span className="text-gradient-flame">About</span> Me
+        </span>
       </h1>
       <p className="max-w-prose mb-8 font-normal text-gray-700 dark:text-gray-300 leading-relaxed">
-        Hey, I&apos;m Ricardo! 🤗 I love computers, science, math and videogames.
+        Hey, I&apos;m Ricardo! 🤗 I love computers, science, math and
+        videogames.
       </p>
 
       <p className="max-w-prose mb-8 font-normal text-gray-700 dark:text-gray-300 leading-relaxed">
-        I&apos;m a 24-year-old Web Developer. From a young age, I have been fascinated by the
-        intricacies of web development, exploring programming languages such as Javascript, Python
-        and MATLAB/R for scientific and engineering applications.
+        I&apos;m a 26-year-old Web Developer. From a young age, I have been
+        fascinated by the intricacies of web development, exploring programming
+        languages such as Javascript, Python and MATLAB/R for scientific and
+        engineering applications.
       </p>
       <p className="max-w-prose mb-8 font-normal text-gray-700 dark:text-gray-300 leading-relaxed">
-        I have managed graphic design communities for over 5 years. Throughout my career, conducted
-        research projects on topics such as the sizing of residential photovoltaic systems and
-        analyzing the harmonics of electric vehicles in distribution networks. A strong passion for
-        learning and always seeking new knowledge and experiences.
+        I have managed graphic design communities for over 5 years. Throughout
+        my career, conducted research projects on topics such as the sizing of
+        residential photovoltaic systems and analyzing the harmonics of electric
+        vehicles in distribution networks. A strong passion for learning and
+        always seeking new knowledge and experiences.
       </p>
 
       <p className="max-w-prose mb-8 font-normal text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -120,7 +131,10 @@ function Skills() {
         I&apos;m also a graphic artist,{" "}
         <a
           href="https://art.ricardochu.com/"
-          className={cn(buttonVariants({ variant: "link" }), "p-0 text-base underline")}
+          className={cn(
+            buttonVariants({ variant: "link" }),
+            "p-0 text-base underline"
+          )}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -144,7 +158,9 @@ function Education() {
           <time className="mb-1 text-sm font-normal leading-none dark:text-gray-400 text-gray-500">
             March 2023 - December 2023
           </time>
-          <h3 className="text-lg font-semibold text-gray-800 dark:text-white">Backend with Java</h3>
+          <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
+            Backend with Java
+          </h3>
           <p className="mb-4 max-w-prose font-normal text-gray-700 dark:text-gray-300 leading-relaxed">
             Globant University
           </p>
@@ -166,7 +182,9 @@ function Education() {
           <time className="mb-1 text-sm font-normal leading-none dark:text-gray-400 text-gray-500">
             August 2021 - November 2021
           </time>
-          <h3 className="text-lg font-semibold text-gray-800 dark:text-white">Web Developer</h3>
+          <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
+            Web Developer
+          </h3>
           <p className="max-w-prose mb-10 font-normal text-gray-700 dark:text-gray-300 leading-relaxed">
             ZTM Academy
           </p>
@@ -186,14 +204,16 @@ function Articles() {
       <Card>
         <CardHeader>
           <CardTitle>
-            Sizing of a Photovoltaic System in the City of Quevedo for Residential Use
+            Sizing of a Photovoltaic System in the City of Quevedo for
+            Residential Use
           </CardTitle>
         </CardHeader>
         <CardContent className="grid gap-4">
           <CardDescription>
-            The sizing of a small photovoltaic system of a residence in the city of Quevedo is
-            presented, with the objective of analyzing solar photovoltaic installations as a measure
-            to promote the use of distributed generation in homes and the reduction of costs to be
+            The sizing of a small photovoltaic system of a residence in the city
+            of Quevedo is presented, with the objective of analyzing solar
+            photovoltaic installations as a measure to promote the use of
+            distributed generation in homes and the reduction of costs to be
             paid for electricity consumption.
           </CardDescription>
           <Button variant="outline" size="sm" asChild>

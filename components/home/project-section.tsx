@@ -7,7 +7,7 @@ import { buttonVariants } from "../ui/button";
 
 export function ProjectSection() {
   return (
-    <Section className="container">
+    <Section className="container mx-auto">
       <h2 className="mb-6 leading-relaxed text-2xl font-bold flex justify-between">
         <span>Projects</span>
         <Link className={buttonVariants({ variant: "secondary" })} href="/projects">

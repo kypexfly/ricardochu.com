@@ -43,7 +43,7 @@ export function Navbar() {
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.35, ease: "easeInOut" }}
     >
-      <div className="container flex justify-between items-center py-4 sm:py-2 sm:px-2">
+      <div className="container mx-auto flex justify-between items-center py-4 sm:py-2 sm:px-2">
         <div className="hidden sm:block" />
         <MobileMenu />
         <DesktopMenu />

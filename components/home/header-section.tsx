@@ -14,7 +14,7 @@ import { SkillIcons } from "../skill-icons";
 export function HeaderSection() {
   const CV_URL = process.env.NEXT_PUBLIC_CV_URL ?? "/#";
   return (
-    <header className="text-center mt-16 relative overflow-x-hidden container py-4 sm:py-8 sm:px-8">
+    <header className="text-center mt-16 relative overflow-x-hidden container mx-auto py-4 sm:py-8 sm:px-8">
       <StaggerAnimateInView className="max-w-2xl mx-auto container">
         <motion.h1 variants={fadeInLeft} className="text-5xl sm:text-6xl font-bold tracking-tight">
           <span className="text-gradient-flame">Ricardo Chu</span>

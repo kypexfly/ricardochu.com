@@ -34,6 +34,7 @@ export function ContactSection() {
   const [form, setForm] = useState(initialFormState);
   const [errors, setErrors] = useState(initialErrorState);
   const [sending, setSending] = useState(false);
+  const [dirty, setDirty] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -56,6 +57,7 @@ export function ContactSection() {
 
   const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setDirty(true);
     setSending(true);
 
     const result = ContactSchema.safeParse(form);
@@ -88,7 +90,7 @@ export function ContactSection() {
   };
 
   return (
-    <Section id="contact" className="sm:px-8 container my-0">
+    <Section id="contact" className="sm:px-8 container mx-auto my-0">
       <StaggerAnimateInView variants={fadeInTop}>
         <h2 className="leading-relaxed text-2xl font-bold">Contact</h2>
 
@@ -117,7 +119,7 @@ export function ContactSection() {
                       onBlur={handleOnBlur}
                       required
                     />
-                    {errors.name && <ErrorMessage>{errors.name}</ErrorMessage>}
+                    {dirty && errors.name && <ErrorMessage>{errors.name}</ErrorMessage>}
                   </FormGroup>
 
                   <FormGroup>
@@ -132,7 +134,7 @@ export function ContactSection() {
                       onBlur={handleOnBlur}
                       required
                     />
-                    {errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
+                    {dirty && errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
                   </FormGroup>
                 </div>
 
@@ -147,7 +149,7 @@ export function ContactSection() {
                     onBlur={handleOnBlur}
                     required
                   />
-                  {errors.message && <ErrorMessage>{errors.message}</ErrorMessage>}
+                  {dirty && errors.message && <ErrorMessage>{errors.message}</ErrorMessage>}
                 </FormGroup>
 
                 <Button
@@ -159,7 +161,7 @@ export function ContactSection() {
                   <span className="relative">{sending ? "Sending..." : "Send"}</span>
                 </Button>
 
-                {errors.form && <ErrorMessage>{errors.form}</ErrorMessage>}
+                {dirty && errors.form && <ErrorMessage>{errors.form}</ErrorMessage>}
               </form>
             </div>
           </>

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function Projects() {
   return (
     <>
-      <section className="container sm:px-8 sm:py-6 my-16">
+      <section className="container mx-auto sm:px-8 sm:py-6 my-16">
         <h1 className="sr-only">Projects</h1>
 
         <header className="text-center sm:text-left my-8">
@@ -35,7 +35,7 @@ export default function Projects() {
         </div>
       </section>
 
-      <section className="container my-16">
+      <section className="container mx-auto my-16">
         <header className="text-center sm:text-left my-8">
           <h2 className="mb-6 text-gray-800 dark:text-white text-3xl font-bold tracking-tight sm:text-3xl">
             Other Projects

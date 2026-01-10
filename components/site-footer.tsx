@@ -3,7 +3,7 @@ import { socialList } from "@/data";
 export function Footer() {
   return (
     <footer className="bg-slate-100/25 border-t-slate-300/25 dark:bg-slate-900/25 px-2 py-8 border-t dark:border-t-slate-700/25">
-      <div className="flex flex-col container w-full text-center">
+      <div className="flex flex-col container mx-auto w-full text-center">
         <div>
           <ul className="flex gap-3 h-full md:hidden justify-center">
             {socialList.map((s) => (
@@ -19,10 +19,10 @@ export function Footer() {
                 </a>
               </li>
             ))}
-            <li className="w-[1px] h-full bg-muted-foreground"></li>
+            <li className="w-px h-full bg-muted-foreground"></li>
           </ul>
         </div>
-        <p className="text-muted-foreground text-sm">Ricardo Chu • Ecuador • 2023</p>
+        <p className="text-muted-foreground text-sm">Ricardo Chu • Ecuador • 2026</p>
       </div>
     </footer>
   );

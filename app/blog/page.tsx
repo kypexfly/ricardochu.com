@@ -1,6 +1,6 @@
 import { TimelineItem, TimelineList } from "@/components/ui/timeline";
 import { siteConfig } from "@/config/site";
-import { allPosts } from "contentlayer/generated";
+import { source } from "@/lib/source";
 import { compareDesc } from "date-fns";
 import { Balancer } from "react-wrap-balancer";
 
@@ -9,10 +9,12 @@ export const metadata = {
 };
 
 export default function Blog() {
-  const posts = allPosts.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)));
+  const posts = source
+    .getPages()
+    .sort((a, b) => compareDesc(new Date(a.data.date), new Date(b.data.date)));
 
   return (
-    <section className="container sm:py-6 sm:px-8 my-16">
+    <section className="container mx-auto sm:py-6 sm:px-8 my-16">
       <h1 className="sr-only">Blog</h1>
 
       <header className="text-center sm:text-left my-8">
@@ -21,8 +23,8 @@ export default function Blog() {
         </h2>
         <p className="max-w-prose mb-10 font-normal text-gray-700 dark:text-gray-300 leading-relaxed">
           <Balancer>
-            Sharing insights and experiences on various topics like software development, machine
-            learning and engineering.
+            Sharing insights and experiences on various topics like software
+            development, machine learning and engineering.
           </Balancer>
         </p>
       </header>
@@ -31,12 +33,12 @@ export default function Blog() {
         <TimelineList className="group">
           {posts.map((post) => (
             <TimelineItem
-              className="group-hover:opacity-50 hover:!opacity-100 transition-opacity"
-              key={post.title}
+              className="group-hover:opacity-50 hover:opacity-100 transition-opacity"
+              key={post.url}
               href={post.url}
-              title={post.title}
-              date={post.date}
-              description={post.description}
+              title={post.data.title}
+              date={post.data.date.toISOString()}
+              description={post.data.description}
             />
           ))}
         </TimelineList>
