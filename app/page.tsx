@@ -1,4 +1,9 @@
-import { BlogSection, ContactSection, HeaderSection, ProjectSection } from "@/components/home";
+import {
+  BlogSection,
+  ContactSection,
+  HeaderSection,
+  ProjectSection,
+} from "@/components/home";
 
 export default function Home() {
   return (

@@ -1,72 +1,82 @@
 "use client";
 
-import { Balancer } from "react-wrap-balancer";
-import { Icons } from "../icons";
-import { StaggerAnimateInView, fadeInLeft, fadeInRight } from "../stagger-animate";
-import { buttonVariants } from "../ui/button";
+import clsx from "clsx";
 import { motion } from "framer-motion";
+import Marquee from "react-fast-marquee";
+import { Balancer } from "react-wrap-balancer";
 import { socialList } from "@/data";
 import { cn } from "@/lib/utils";
-import clsx from "clsx";
-import Marquee from "react-fast-marquee";
+import { Icons } from "../icons";
 import { SkillIcons } from "../skill-icons";
+import {
+  fadeInLeft,
+  fadeInRight,
+  StaggerAnimateInView,
+} from "../stagger-animate";
+import { buttonVariants } from "../ui/button";
 
 export function HeaderSection() {
   const CV_URL = process.env.NEXT_PUBLIC_CV_URL ?? "/#";
   return (
-    <header className="text-center mt-16 relative overflow-x-hidden container py-4 sm:py-8 sm:px-8">
-      <StaggerAnimateInView className="max-w-2xl mx-auto container">
-        <motion.h1 variants={fadeInLeft} className="text-5xl sm:text-6xl font-bold tracking-tight">
+    <header className="container relative mx-auto mt-16 overflow-x-hidden py-4 text-center sm:px-8 sm:py-8">
+      <StaggerAnimateInView className="container mx-auto max-w-2xl">
+        <motion.h1
+          className="font-bold text-5xl tracking-tight sm:text-6xl"
+          variants={fadeInLeft}
+        >
           <span className="text-gradient-flame">Ricardo Chu</span>
         </motion.h1>
 
         <motion.h2
+          className="mb-3 block font-bold text-2xl text-gray-800 leading-relaxed dark:text-white"
           variants={fadeInLeft}
-          className="block mb-3 leading-relaxed text-2xl font-bold text-gray-800 dark:text-white"
         >
           FullStack Developer
         </motion.h2>
 
-        <p className="mb-3 text-gray-700 dark:text-gray-300 leading-relaxed text-sm md:text-base">
+        <p className="mb-3 text-gray-700 text-sm leading-relaxed md:text-base dark:text-gray-300">
           <Balancer>
-            I bring ideas to life through code and creativity, crafting modern web applications with
-            attention to detail, UX and performance.
+            I bring ideas to life through code and creativity, crafting modern
+            web applications with attention to detail, UX and performance.
           </Balancer>
         </p>
 
-        <div className="flex gap-2 justify-center mt-4">
-          <a href="#contact" className={cn(buttonVariants({ variant: "secondary" }))}>
+        <div className="mt-4 flex justify-center gap-2">
+          <a
+            className={cn(buttonVariants({ variant: "secondary" }))}
+            href="#contact"
+          >
             Contact me
           </a>
 
           <a
-            href={CV_URL}
             className={buttonVariants({ variant: "link" })}
-            target="_blank"
+            href={CV_URL}
             rel="noopener noreferrer"
+            target="_blank"
           >
             Resume
-            <Icons.extlink className="ml-2" width={18} height={18} />
+            <Icons.extlink className="ml-2" height={18} width={18} />
           </a>
 
           <motion.ul
-            variants={fadeInRight}
             className={clsx(
-              "hidden absolute top-0 right-0 space-y-3 h-full px-2 md:flex flex-col items-center",
-              "after:w-[1px] after:h-full after:bg-gradient-to-t after:from-transparent after:to-muted-foreground after:mt-3"
+              "absolute top-0 right-0 hidden h-full flex-col items-center space-y-3 px-2 md:flex",
+              "after:mt-3 after:h-full after:w-[1px] after:bg-gradient-to-t after:from-transparent after:to-muted-foreground"
             )}
+            variants={fadeInRight}
           >
             {socialList.map((s) => (
               <li
+                className="text-muted-foreground transition-all ease-in-out hover:scale-125 hover:text-foreground"
                 key={s.label}
-                className="hover:text-foreground hover:scale-125 transition-all ease-in-out text-muted-foreground"
               >
                 <a
-                  href={s.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   aria-label={`Open ${s.label} to a new tab`}
-                  className="p-2 block"
+                  className="block p-2"
+                  href={s.url}
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
                   <s.icon size={22} />
                 </a>
@@ -76,10 +86,10 @@ export function HeaderSection() {
         </div>
 
         <div className="mt-9" style={{ height: 36 }}>
-          <Marquee gradient speed={30} autoFill pauseOnHover>
+          <Marquee autoFill gradient pauseOnHover speed={30}>
             {Object.entries(SkillIcons).map((s) => {
               const [name, Icon] = s;
-              return <Icon key={name} title={name} className="mx-2 w-9 h-9" />;
+              return <Icon className="mx-2 h-9 w-9" key={name} title={name} />;
             })}
           </Marquee>
         </div>

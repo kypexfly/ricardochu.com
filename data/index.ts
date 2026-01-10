@@ -1,5 +1,5 @@
-import { Project, Social } from "@/types";
 import { Icons } from "@/components/icons";
+import type { Project, Social } from "@/types";
 
 export const socialList: Social[] = [
   {
@@ -49,17 +49,26 @@ export const projectList: Project[] = [
   },
   {
     title: "Cryptocurrency Manager",
-    description: "CryptoView let you explore news, manage, and gain insightful analysis on cryptocurrencies.",
+    description:
+      "CryptoView let you explore news, manage, and gain insightful analysis on cryptocurrencies.",
     date: "2023",
     source: "https://github.com/kypexfly/cryptoview",
     demo: "https://cryptoview-plus.netlify.app",
-    tech: ["react", "express", "plotly", "mongodb", "netlify-functions", "vite"],
+    tech: [
+      "react",
+      "express",
+      "plotly",
+      "mongodb",
+      "netlify-functions",
+      "vite",
+    ],
     cover: "/img/cover-cryptoview.jpg",
     highlight: true,
   },
   {
     title: "E-commerce Store",
-    description: "Fullstack tech e-commerce app with React/Next and Stripe payment.",
+    description:
+      "Fullstack tech e-commerce app with React/Next and Stripe payment.",
     date: "2023",
     source: "https://github.com/kypexfly/cybertech-ecommerce",
     demo: "https://cybertech-ecommerce.vercel.app",
@@ -79,7 +88,8 @@ export const projectList: Project[] = [
   },
   {
     title: "ricardochu.com",
-    description: "Personal website, portfolio and blog. Next.js 13 with App Router API and SSR.",
+    description:
+      "Personal website, portfolio and blog. Next.js 13 with App Router API and SSR.",
     date: "2023",
     source: "https://github.com/kypexfly/ricardochu",
     demo: "https://www.ricardochu.com",
@@ -89,7 +99,8 @@ export const projectList: Project[] = [
   },
   {
     title: "To-Do App",
-    description: "A To-Do App with task completion, sort options, and local storage.",
+    description:
+      "A To-Do App with task completion, sort options, and local storage.",
     date: "2022",
     source: "https://github.com/kypexfly/todo-app-ts",
     demo: "https://react-todoapp-ts.netlify.app/",
@@ -99,7 +110,8 @@ export const projectList: Project[] = [
   },
   {
     title: "Epic Seven Index",
-    description: "Library of heroes and artifacts for the Epic Seven mobile game.",
+    description:
+      "Library of heroes and artifacts for the Epic Seven mobile game.",
     date: "2022",
     source: "https://github.com/kypexfly/epic7index",
     demo: "https://epic7index.netlify.app",
@@ -117,7 +129,8 @@ export const projectList: Project[] = [
   },
   {
     title: "Learning and testing",
-    description: "A repository to test libraries, frameworks, and tools for improving skills.",
+    description:
+      "A repository to test libraries, frameworks, and tools for improving skills.",
     date: "2023",
     source: "https://github.com/kypexfly/learning",
     tech: ["learning", "tools", "testing", "libraries"],
@@ -138,7 +151,8 @@ export const projectList: Project[] = [
   },
   {
     title: "Economic Load Dispatch algorithm",
-    description: "Algorithm based on Power Generation, Operation, and Control by Allen J. Wood.",
+    description:
+      "Algorithm based on Power Generation, Operation, and Control by Allen J. Wood.",
     date: "2022",
     source: "https://github.com/kypexfly/economic-load-dispatch",
     tech: ["python", "matlab"],

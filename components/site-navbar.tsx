@@ -1,5 +1,8 @@
 "use client";
 
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import Link from "next/link";
+import { useState } from "react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -9,12 +12,9 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { routes } from "@/lib/routes";
-import Link from "next/link";
 import { Icons } from "./icons";
 import { NavLink } from "./navlink";
 import { ThemeToggler } from "./theme-toggle";
-import { motion, useMotionValueEvent, useScroll } from "framer-motion";
-import { useState } from "react";
 
 export function Navbar() {
   const { scrollY } = useScroll();
@@ -31,7 +31,9 @@ export function Navbar() {
 
   return (
     <motion.header
-      className="border-b-slate-300/20 border-b dark:border-b-slate-700/20 bg-slate-100/30 dark:bg-slate-900/30 backdrop-blur-md sticky top-0 z-10"
+      animate={hidden ? "hidden" : "visible"}
+      className="sticky top-0 z-10 border-b border-b-slate-300/20 bg-slate-100/30 backdrop-blur-md dark:border-b-slate-700/20 dark:bg-slate-900/30"
+      transition={{ duration: 0.35, ease: "easeInOut" }}
       variants={{
         visible: {
           y: 0,
@@ -40,10 +42,8 @@ export function Navbar() {
           y: "-100%",
         },
       }}
-      animate={hidden ? "hidden" : "visible"}
-      transition={{ duration: 0.35, ease: "easeInOut" }}
     >
-      <div className="container flex justify-between items-center py-4 sm:py-2 sm:px-2">
+      <div className="container mx-auto flex items-center justify-between py-4 sm:px-2 sm:py-2">
         <div className="hidden sm:block" />
         <MobileMenu />
         <DesktopMenu />
@@ -62,25 +62,25 @@ function MobileMenu() {
           <NavigationMenuItem className="flex items-center">
             <NavigationMenuTrigger
               aria-label="Open navigation menu"
-              className="bg-transparent p-1 h-auto"
+              className="h-auto bg-transparent p-1"
             >
               <Icons.close
-                className="absolute transition duration-200 group-data-[state=open]:rotate-180 group-data-[state=open]:scale-100 scale-0"
+                className="absolute scale-0 transition duration-200 group-data-[state=open]:rotate-180 group-data-[state=open]:scale-100"
                 size={20}
               />
               <Icons.menu
-                className="transition duration-200 group-data-[state=open]:rotate-180 group-data-[state=open]:scale-0 scale-100"
+                className="scale-100 transition duration-200 group-data-[state=open]:rotate-180 group-data-[state=open]:scale-0"
                 size={20}
               />
             </NavigationMenuTrigger>
 
             <NavigationMenuContent>
-              <nav className="w-full fixed flex flex-col left-0 top-[61px] bg-background h-screen py-16 text-center">
+              <nav className="fixed top-[61px] left-0 flex h-screen w-full flex-col bg-background py-16 text-center">
                 {routes.map((route) => (
                   <Link
+                    className="flex p-2"
                     href={route.path}
                     key={route.path}
-                    className="flex p-2"
                     legacyBehavior
                     passHref
                   >
@@ -100,8 +100,8 @@ function MobileMenu() {
 
 function DesktopMenu() {
   return (
-    <div className="hidden sm:flex flex-row justify-between">
-      <nav className="border border-border/50 rounded-xl px-4 py-2 bg-background/50">
+    <div className="hidden flex-row justify-between sm:flex">
+      <nav className="rounded-xl border border-border/50 bg-background/50 px-4 py-2">
         <ul className="flex gap-6 [&_a]:font-bold [&_a]:text-sm">
           {routes.map((route) => (
             <li key={route.path}>

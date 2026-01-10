@@ -1,9 +1,9 @@
 "use client";
 
+import clsx from "clsx";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Icons } from "./icons";
-import clsx from "clsx";
 
 const ScrollToTop = () => {
   const { scrollY } = useScroll();
@@ -29,9 +29,13 @@ const ScrollToTop = () => {
 
   return (
     <motion.button
-      onClick={goToTop}
+      animate={hidden ? "hidden" : "visible"}
       aria-label="Go to top"
-      className={clsx("fixed bottom-5 right-5 rounded-full border p-1 bg-secondary opacity-0")}
+      className={clsx(
+        "fixed right-5 bottom-5 rounded-full border bg-secondary p-1 opacity-0"
+      )}
+      onClick={goToTop}
+      transition={{ duration: 0.35, ease: "easeInOut" }}
       variants={{
         visible: {
           opacity: 1,
@@ -40,8 +44,6 @@ const ScrollToTop = () => {
           opacity: 0,
         },
       }}
-      animate={hidden ? "hidden" : "visible"}
-      transition={{ duration: 0.35, ease: "easeInOut" }}
     >
       <Icons.up />
     </motion.button>

@@ -1,17 +1,19 @@
-import { allPosts } from "contentlayer/generated";
 import { compareDesc } from "date-fns";
 import Link from "next/link";
+import { source } from "@/lib/source";
 import PostCard from "../post-card";
 import { Section } from "../section";
-import { StaggerAnimateInView, fadeInLeft } from "../stagger-animate";
+import { fadeInLeft, StaggerAnimateInView } from "../stagger-animate";
 import { buttonVariants } from "../ui/button";
 
 export function BlogSection() {
-  const posts = allPosts.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)));
+  const posts = source
+    .getPages()
+    .sort((a, b) => compareDesc(new Date(a.data.date), new Date(b.data.date)));
 
   return (
-    <Section className="container">
-      <h2 className="mb-6 leading-relaxed text-2xl font-bold flex justify-between">
+    <Section className="container mx-auto">
+      <h2 className="mb-6 flex justify-between font-bold text-2xl leading-relaxed">
         <span>Latest Posts</span>
         <Link className={buttonVariants({ variant: "secondary" })} href="/blog">
           View all
@@ -20,8 +22,14 @@ export function BlogSection() {
 
       <div className="grid gap-6 lg:grid-cols-2">
         {posts.slice(0, 4).map((post) => (
-          <StaggerAnimateInView key={post.title} variants={fadeInLeft}>
-            <PostCard {...post} />
+          <StaggerAnimateInView key={post.url} variants={fadeInLeft}>
+            <PostCard
+              date={post.data.date.toISOString()}
+              description={post.data.description}
+              src={post.data.src}
+              title={post.data.title}
+              url={post.url}
+            />
           </StaggerAnimateInView>
         ))}
       </div>

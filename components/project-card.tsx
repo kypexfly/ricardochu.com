@@ -1,10 +1,16 @@
 "use client";
 
-import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import useCardSpotlight from "@/hooks/useCardSpotlight";
-import { Project } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  Card,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import useCardSpotlight from "@/hooks/use-card-spotlight";
+import type { Project } from "@/types";
 import { Icons } from "./icons";
 import { AspectRatio } from "./ui/aspect-ratio";
 import { buttonVariants } from "./ui/button";
@@ -19,7 +25,6 @@ export default function ProjectCard({
   title,
   description,
   article,
-  date,
   cover,
   demo,
   source,
@@ -39,13 +44,13 @@ export default function ProjectCard({
 
   return (
     <Card
-      ref={divRef}
-      onMouseMove={handleMouseMove}
-      onFocus={handleFocus}
+      className="relative flex h-full flex-col overflow-hidden rounded-lg border shadow-lg dark:border-slate-800 dark:bg-slate-900/25"
       onBlur={handleBlur}
+      onFocus={handleFocus}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="flex flex-col relative overflow-hidden rounded-lg border dark:border-slate-800 dark:bg-slate-900/25 shadow-lg h-full"
+      onMouseMove={handleMouseMove}
+      ref={divRef}
     >
       <div
         className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
@@ -57,48 +62,54 @@ export default function ProjectCard({
       {showCover && (
         <AspectRatio ratio={1800 / 900}>
           <Image
-            fill
-            className="object-cover"
             alt={`${title} image preview`}
-            src={cover!}
+            className="object-cover"
+            fill
+            priority={Number.isInteger(index) ? (index as number) < 3 : false}
             sizes="(max-width: 768px) 85vw, (max-width: 1024px) 45vw, 300px"
-            priority={Number.isInteger(index) ? index! < 3 : false} // only load the first 3 images as priority for mobile/desktop
+            src={cover as string} // only load the first 3 images as priority for mobile/desktop
           />
         </AspectRatio>
       )}
       <CardHeader className="pb-2">
         <CardTitle className="mb-2">{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
-        <ul className="flex gap-2 flex-wrap text-[0.75rem] w-full">
+        <ul className="flex w-full flex-wrap gap-2 text-[0.75rem]">
           {tech?.map((item) => (
-            <li className="rounded bg-slate-100 dark:bg-slate-800 px-2" key={item}>
+            <li
+              className="rounded bg-slate-100 px-2 dark:bg-slate-800"
+              key={item}
+            >
               {item}
             </li>
           ))}
         </ul>
       </CardHeader>
-      <CardFooter className="mt-auto flex gap-6 flex-wrap [&_.icon]:ml-1 [&>a]:px-0 py-2">
+      <CardFooter className="mt-auto flex flex-wrap gap-6 py-2 [&>a]:px-0 [&_.icon]:ml-1">
         {article && (
-          <Link href={article} className={buttonVariants({ variant: "link", size: "sm" })}>
+          <Link
+            className={buttonVariants({ variant: "link", size: "sm" })}
+            href={article}
+          >
             Article
           </Link>
         )}
         {source && (
           <a
-            href={source}
-            target="_blank"
-            rel="noopener noreferrer"
             className={buttonVariants({ variant: "link", size: "sm" })}
+            href={source}
+            rel="noopener noreferrer"
+            target="_blank"
           >
             Source <Icons.extlink size={18} />
           </a>
         )}
         {demo && (
           <a
-            href={demo}
-            target="_blank"
-            rel="noopener noreferrer"
             className={buttonVariants({ variant: "link", size: "sm" })}
+            href={demo}
+            rel="noopener noreferrer"
+            target="_blank"
           >
             Demo <Icons.extlink size={18} />
           </a>
